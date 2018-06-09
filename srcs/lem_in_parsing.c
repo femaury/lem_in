@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/09 19:09:26 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/09 19:56:53 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static t_room	*add_room(char *line)
 	int			status;
 	t_room		*new;
 
-	if (!(new = (t_room *)malloc(sizeof(t_room))))
-		lem_in_exit();
 	if (!(status = 0) && line[0] == '#')
 	{
 		if (!ft_strncmp(line, "##start", 7))
@@ -56,6 +54,8 @@ static t_room	*add_room(char *line)
 		if (ft_gnl(0, &line) < 1 || !line)
 			lem_in_exit();
 	}
+	if (!(new = (t_room *)malloc(sizeof(t_room))))
+		lem_in_exit();
 	info = ft_strsplit(line, ' ');
 	if (!info[0] || !info[1] || !info[2])
 		lem_in_exit();
@@ -64,6 +64,7 @@ static t_room	*add_room(char *line)
 	new->posx = ft_atoi(info[1]);
 	new->posy = ft_atoi(info[2]);
 	new->ant_id = 0;
+	new->links = NULL;
 	new->next = NULL;
 	ft_tabdel((void **)info, ft_strtabsize(info));
 	return (new);
@@ -85,6 +86,43 @@ static void		build_anthill(t_env *env, char *line)
 	}
 }
 
+static t_room	*find_room(t_room *rooms, char *name)
+{
+	t_room	*curr;
+
+	curr = rooms;
+	while (curr)
+	{
+		if (!ft_strcmp(curr->name, name))
+			return (curr);
+		curr = curr->next;
+	}
+	return (NULL);
+}
+
+static void		set_links(t_env *env, char *line)
+{
+	t_room	*curr;
+	char	**names;
+
+	names = ft_strsplit(line, '-');
+	if (!names[0] || !names[1])
+		lem_in_exit();
+	if (!(curr = find_room(env->rooms, names[0])))
+		lem_in_exit();
+	if (!curr->links)
+		curr->links = ft_lstnew(names[1], ft_strlen(names[1]));
+	else
+		ft_lstadd(&curr->links, ft_lstnew(names[1], ft_strlen(names[1])));
+	if (!(curr = find_room(env->rooms, names[1])))
+		lem_in_exit();
+	if (!curr->links)
+		curr->links = ft_lstnew(names[0], ft_strlen(names[0]));
+	else
+		ft_lstadd(&curr->links, ft_lstnew(names[0], ft_strlen(names[0])));
+	ft_tabdel((void **)names, ft_strtabsize(names));
+}
+
 void			parse_input(t_env *env)
 {
 	char	*line;
@@ -98,8 +136,10 @@ void			parse_input(t_env *env)
 				env->pop = ft_atoi(line);
 				create_colony(env);
 			}
-			else if (line[1] == '#' || ft_strhasc(line, ' '))
+			else if ((line[1] == '#' && ft_strhasc("sSeE", line[2])) || ft_strhasc(line, ' '))
 				build_anthill(env, line);
+			else if (ft_strhasc(line, '-'))
+				set_links(env, line);
 		}
 		ft_strdel(&line);
 	}

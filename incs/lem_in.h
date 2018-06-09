@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/09 18:56:20 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/09 19:57:24 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_room
 	int				posx;
 	int				posy;
 	unsigned int	ant_id;
+	t_list			*links;
 	struct s_room	*next;
 }				t_room;
 
