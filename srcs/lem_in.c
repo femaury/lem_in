@@ -6,11 +6,19 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/10 11:55:04 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/10 12:55:09 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+ *		TEST FUNCTION
+ *
+ *	Prints the results of parse_input
+ *	to verify correct parsing.
+ *
+*/
 
 void	print_lists(t_env *env)
 {
@@ -44,7 +52,7 @@ void	print_lists(t_env *env)
 			link = link->next;
 		}
 		ft_printf("                   \n");
-		ft_printf("---------------------\n\n");
+		ft_printf("---------------------\n");
 		ft_printf("          |\n");
 		ft_printf("          |\n");
 		ft_printf("          |\n");
@@ -52,6 +60,15 @@ void	print_lists(t_env *env)
 		room = room->next;
 	}
 }
+
+/*
+ *		MAIN FUNCTION
+ *
+ *	Initializes environment.
+ *	Calls parse_input to
+ *	finish creating the env.
+ *
+*/
 
 int		main(void)
 {
