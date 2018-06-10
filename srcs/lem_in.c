@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/09 19:59:54 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/10 11:55:04 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void	print_lists(t_env *env)
 	while (room)
 	{
 		ft_printf("---------------------\n");
-		ft_printf("|                   |\n");
-		ft_printf("|   NAME : %s        |\n", room->name);
-		ft_printf("|   COORD: (%02d, %02d) |\n", room->posx, room->posy);
-		ft_printf("|   STATS: %d        |\n", room->status);
-		ft_printf("|   ANT N: %u        |\n", room->ant_id);
-		ft_printf("|   LINKS           |\n");
+		ft_printf("                   \n");
+		ft_printf("   NAME  : %s        \n", room->name);
+		ft_printf("   COORDS: (%02d, %02d) \n", room->posx, room->posy);
+		ft_printf("   STATUS: %d        \n", room->status);
+		ft_printf("   ANT ID: %u        \n", room->ant_id);
+		ft_printf("   LINKS           \n");
 		link = room->links;
 		while (link)
 		{
-			ft_printf("|    |-> %s          |\n", (char *)link->content);
+			ft_printf("    |-> %s          \n", (char *)link->content);
 			link = link->next;
 		}
-		ft_printf("|                   |\n");
+		ft_printf("                   \n");
 		ft_printf("---------------------\n\n");
 		ft_printf("          |\n");
 		ft_printf("          |\n");
