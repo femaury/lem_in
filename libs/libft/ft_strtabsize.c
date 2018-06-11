@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:46:04 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/09 17:49:14 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/10 13:07:20 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ size_t	ft_strtabsize(char **s)
 	size_t		i;
 
 	i = 0;
-	while (s[i])
+	if (!s)
+		return (0);
+	while (s[i] && s[i][0])
 		i++;
 	return (i);
 }

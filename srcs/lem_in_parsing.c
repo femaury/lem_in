@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/10 12:49:22 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/11 15:03:42 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static t_room	*add_room(char *line, int status)
 
 	if (!(new = (t_room *)malloc(sizeof(t_room))))
 		lem_in_exit();
-	info = ft_strsplit(line, ' ');
+	if (!(info = ft_strsplit(line, ' ')))
+		lem_in_exit();
 	if (!info[0] || !info[1] || !info[2])
 		lem_in_exit();
 	new->name = ft_strdup(info[0]);
@@ -98,30 +99,11 @@ static void		build_anthill(t_env *env, char *line, int *status)
 		curr->next = add_room(line, *status);
 		curr = curr->next;
 	}
+	if (*status == START)
+		env->start = curr->name;
+	else if (*status == END)
+		env->end = curr->name;
 	*status = 0;
-}
-
-/*
- * 		t_room	*find_room(t_room *rooms, char *name);
- *
- *	  Finds room in linked list with corresponding name.
- *	  If no room is found, returns NULL so that a call to
- *	  lem_in_exit can be made from parent function.
- *
-*/
-
-static t_room	*find_room(t_room *rooms, char *name)
-{
-	t_room	*curr;
-
-	curr = rooms;
-	while (curr)
-	{
-		if (!ft_strcmp(curr->name, name))
-			return (curr);
-		curr = curr->next;
-	}
-	return (NULL);
 }
 
 /*

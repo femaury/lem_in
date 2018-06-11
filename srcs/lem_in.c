@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/10 12:55:09 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/11 15:12:27 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void	print_lists(t_env *env)
 		ft_printf("          V\n");
 		room = room->next;
 	}
+	link = env->best;
+	ft_printf("      \\_______/      \n\n");
+	ft_printf("[][][]          [][][]\n");
+	ft_printf("[][][]   BEST   [][][]\n");
+	ft_printf("[][][]          [][][]\n");
+	ft_printf("[][]              [][]\n");
+	while (link)
+	{
+		ft_printf("[][]      %s       [][]\n", (char *)link->content);
+		ft_printf("[][]              [][]\n");
+		ft_printf("[][]      |       [][]\n");
+		ft_printf("[][]      V       [][]\n");
+		link = link->next;
+	}
 }
 
 /*
@@ -75,9 +89,13 @@ int		main(void)
 	t_env	env;
 
 	env.pop = 0;
+	env.start = NULL;
+	env.end = NULL;
+	env.best = NULL;
 	env.ants = NULL;
 	env.rooms = NULL;
 	parse_input(&env);
+	find_best_path(&env);
 	print_lists(&env);
 	return (0);
 }

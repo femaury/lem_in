@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:07:51 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/09 17:47:15 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/11 15:35:29 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_list			*ft_lstfind_size(t_list *lst, size_t ref);
 size_t			ft_lstsize(t_list *lst);
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstrev(t_list **alst);
-void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+void			ft_lstdel(t_list *alst);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 

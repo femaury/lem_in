@@ -6,19 +6,20 @@
 #    By: femaury <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 20:03:09 by femaury           #+#    #+#              #
-#    Updated: 2018/06/09 18:56:31 by femaury          ###   ########.fr        #
+#    Updated: 2018/06/11 15:03:12 by femaury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SRC_PATH = srcs
-SRC_NAME = lem_in.c lem_in_parsing.c lem_in_exit.c
+SRC_NAME = lem_in.c lem_in_parsing.c lem_in_listfuncs.c lem_in_findbest.c \
+		   lem_in_exit.c
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 .PHONY: all, clean, fclean, re
 
