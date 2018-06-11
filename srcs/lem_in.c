@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/11 15:12:27 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/11 18:24:56 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	print_lists(t_env *env)
 	ft_printf("      \\_______/      \n\n");
 	ft_printf("[][][]          [][][]\n");
 	ft_printf("[][][]   BEST   [][][]\n");
-	ft_printf("[][][]          [][][]\n");
+	ft_printf("[][][]    %02u    [][][]\n", env->best_len);
 	ft_printf("[][]              [][]\n");
 	while (link)
 	{
@@ -71,8 +71,10 @@ void	print_lists(t_env *env)
 		ft_printf("[][]              [][]\n");
 		ft_printf("[][]      |       [][]\n");
 		ft_printf("[][]      V       [][]\n");
+		ft_printf("[][]              [][]\n");
 		link = link->next;
 	}
+	ft_printf("START --> %s\nEND ----> %s\n", env->start, env->end);
 }
 
 /*
