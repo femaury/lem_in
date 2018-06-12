@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 12:27:40 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/12 17:05:42 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,8 @@ int		main(void)
 	env.best = NULL;
 	env.ants = NULL;
 	env.rooms = NULL;
-	ft_printf("Calling parsing\n");
 	parse_input(&env);
-	ft_printf("Calling best path\n");
 	find_best_path(&env);
-	ft_printf("Calling print lists\n");
 	print_lists(&env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 11:59:24 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/12 17:05:53 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void		create_colony(t_env *env)
 		lem_in_exit();
 	if (!(new = (t_ant *)malloc(sizeof(t_ant))))
 		lem_in_exit();
-	ft_printf("hello\n");
 	new->id = 1;
 	new->next = NULL;
 	new->room = NULL;
