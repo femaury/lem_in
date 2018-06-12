@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:02:11 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/01 17:48:35 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/12 10:40:19 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			ft_gnl(const int fd, char **line)
 		if (!(curr = ft_lstnew("\0", 1)))
 			return (-1);
 		curr->content_size = fd;
-		ft_lstadd(&files, curr);
+		ft_lstprepend(&files, curr);
 	}
 	if ((rd = ft_readline(fd, curr)) < 0)
 		return (rd);

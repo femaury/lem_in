@@ -6,7 +6,7 @@
 #    By: femaury <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 20:03:09 by femaury           #+#    #+#              #
-#    Updated: 2018/06/11 18:34:28 by femaury          ###   ########.fr        #
+#    Updated: 2018/06/12 11:38:49 by femaury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ SRC_NAME = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		   ft_strncmp.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 		   ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c \
 		   ft_toupper.c ft_itoa.c ft_strncpy.c ft_lstprepend.c ft_lstdel.c \
-		   ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
+		   ft_lstdellast.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
 		   ft_lstrev.c ft_lstfind_content.c ft_lstfind_size.c ft_itoa_base.c \
 		   ft_putlst.c ft_strtablen.c ft_strtablen_at.c ft_sqrt.c \
 		   ft_strndup.c ft_strnjoin.c ft_strnclr.c ft_uimaxtoa_base.c \
 		   ft_isupper.c ft_islower.c ft_setupcase.c ft_setlowcase.c \
 		   ft_imaxtoa_base.c ft_wcharlen.c ft_wstrlen.c ft_strhasc.c ft_gnl.c \
 		   ft_strisonly.c ft_pow.c ft_tabdel.c ft_strisonlyc.c ft_strdupto.c \
-		   ft_strtabsize.c ft_lstappend.c
+		   ft_strtabsize.c ft_lstappend.c ft_lstdelfirst.c ft_lstcpy.c
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

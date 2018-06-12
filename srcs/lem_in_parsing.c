@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/11 18:09:36 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/12 11:59:24 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void		create_colony(t_env *env)
 		lem_in_exit();
 	if (!(new = (t_ant *)malloc(sizeof(t_ant))))
 		lem_in_exit();
+	ft_printf("hello\n");
 	new->id = 1;
 	new->next = NULL;
 	new->room = NULL;
@@ -130,13 +131,13 @@ static void		set_links(t_env *env, char *line)
 	if (!curr->links)
 		curr->links = ft_lstnew(names[1], ft_strlen(names[1]));
 	else
-		ft_lstadd(&curr->links, ft_lstnew(names[1], ft_strlen(names[1])));
+		ft_lstprepend(&curr->links, ft_lstnew(names[1], ft_strlen(names[1])));
 	if (!(curr = find_room(env->rooms, names[1])))
 		lem_in_exit();
 	if (!curr->links)
 		curr->links = ft_lstnew(names[0], ft_strlen(names[0]));
 	else
-		ft_lstadd(&curr->links, ft_lstnew(names[0], ft_strlen(names[0])));
+		ft_lstprepend(&curr->links, ft_lstnew(names[0], ft_strlen(names[0])));
 	ft_tabdel((void **)names, ft_strtabsize(names));
 }
 
