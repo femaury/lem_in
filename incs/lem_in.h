@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 11:54:59 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/14 12:15:46 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,15 @@ typedef struct	s_room
 
 typedef struct	s_env
 {
+	char			*file;
 	char			*start;
 	char			*end;
 	unsigned int	pop;
 	unsigned int	best_len;
 	t_list			*best;
 	t_list			*tmp;
-	struct s_ant	*ants;
-	struct s_room	*rooms;
+	t_ant			*ants;
+	t_room			*rooms;
 }				t_env;
 
 /*

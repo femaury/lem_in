@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 14:17:00 by cholm            ###   ########.fr       */
+/*   Updated: 2018/06/14 12:41:37 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  *
 */
 
-static int	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
+static void	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 {
 	if (curr)
 	{
@@ -37,10 +37,9 @@ static int	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 				ft_lstappend(&env->tmp, ft_lstnew(curr->name, ft_strlen(curr->name)));
 				env->best = ft_lstcpy(&env->tmp);
 				ft_lstdellast(&env->tmp);
-				ft_lstdellast(&env->tmp);
 			}
 			curr->status = EMPTY;
-			return (1);
+			return ;
 		}
 		while (tunnel)
 		{
@@ -56,7 +55,6 @@ static int	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 		curr->status = curr->status == OCCUPIED ? EMPTY : curr->status;
 		ft_lstdellast(&env->tmp);
 	}
-	return (0);
 }
 
 /*
@@ -73,9 +71,10 @@ void	find_best_path(t_env *env)
 
 	env->best_len = UINT_MAX;
 	start = find_room(env->rooms, env->start);
-	ft_printf("test\n");
 	if (!(env->tmp = ft_lstnew(env->start, ft_strlen(env->start))))
 		lem_in_exit();
-	ft_printf("test\n");
 	find_end(env, start, NULL, 1);
+	ft_lstdel(&env->tmp);
+	if (!env->best)
+		lem_in_exit();
 }

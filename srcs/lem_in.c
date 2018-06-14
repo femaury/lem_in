@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 17:05:42 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/14 12:49:01 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	print_lists(t_env *env)
 	ft_printf("[][][]   BEST   [][][]\n");
 	ft_printf("[][][]    %02u    [][][]\n", env->best_len);
 	ft_printf("[][]              [][]\n");
-	while (link)
+	while (link->next)
 	{
 		ft_printf("[][]      %s       [][]\n", (char *)link->content);
 		ft_printf("[][]              [][]\n");
@@ -74,6 +74,9 @@ void	print_lists(t_env *env)
 		ft_printf("[][]              [][]\n");
 		link = link->next;
 	}
+	ft_printf("[][]      %s       [][]\n", (char *)link->content);
+	ft_printf("[][][]          [][][]\n");
+	ft_printf("[][][][][][][][][][][]\n");
 	ft_printf("START --> %s\nEND ----> %s\n", env->start, env->end);
 }
 
@@ -91,6 +94,7 @@ int		main(void)
 	t_env	env;
 
 	env.pop = 0;
+	env.file = NULL;
 	env.start = NULL;
 	env.end = NULL;
 	env.best = NULL;
@@ -98,6 +102,7 @@ int		main(void)
 	env.rooms = NULL;
 	parse_input(&env);
 	find_best_path(&env);
+	ft_putendl(env.file);
 	print_lists(&env);
 	return (0);
 }

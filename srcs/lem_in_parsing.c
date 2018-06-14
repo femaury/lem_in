@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 17:05:53 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/14 12:35:29 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ void			parse_input(t_env *env)
 			else if (ft_strhasc(line, '-'))
 				set_links(env, line);
 		}
+		env->file = ft_strjoin_nl(env->file, line);
 		ft_strdel(&line);
 	}
 }

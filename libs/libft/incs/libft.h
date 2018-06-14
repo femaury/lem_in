@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:07:51 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/12 12:26:33 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/14 12:35:08 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strnjoin(char const *s1, char const *s2, size_t len);
+char			*ft_strjoin_nl(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
