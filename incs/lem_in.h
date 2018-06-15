@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 12:15:46 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 16:23:58 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEM_IN_H
 
 /*
- *	----------------------------- SYSTEM LIBRARIES -----------------------------
+**	----------------------------- SYSTEM LIBRARIES -----------------------------
 */
 
 # include <unistd.h>
@@ -24,14 +24,14 @@
 # include <limits.h>
 
 /*
- *	------------------------------- MY LIBRARIES -------------------------------
+**	------------------------------- MY LIBRARIES -------------------------------
 */
 
 # include "../libs/libft/incs/libft.h"
 # include "../libs/printf/incs/libftprintf.h"
 
 /*
- *	------------------------------ STATUS DEFINES ------------------------------
+**	------------------------------ STATUS DEFINES ------------------------------
 */
 
 # define EMPTY 0
@@ -40,7 +40,22 @@
 # define END 3
 
 /*
- *	-------------------------------- STRUCTURES --------------------------------
+**	------------------------------- ERROR DEFINES ------------------------------
+*/
+
+# define E_MALLOC -1
+# define E_SPLIT -2
+# define E_NOPOP -3
+# define E_ROOM -4
+# define E_LINK -5
+# define E_LINK1 -6
+# define E_LINK2 -7
+# define E_NOPATH -8
+# define E_NOSTART -9
+# define E_NOEND -10
+
+/*
+**	-------------------------------- STRUCTURES --------------------------------
 */
 
 typedef struct	s_ant
@@ -63,6 +78,7 @@ typedef struct	s_room
 
 typedef struct	s_env
 {
+	int				error;
 	char			*file;
 	char			*start;
 	char			*end;
@@ -75,15 +91,16 @@ typedef struct	s_env
 }				t_env;
 
 /*
- *	----------------------------- LEM_IN FUNCTIONS -----------------------------
+**	----------------------------- LEM_IN FUNCTIONS -----------------------------
 */
 
 void			parse_input(t_env *env);
+void			env_init(t_env *env);
 void			find_best_path(t_env *env);
-void			lem_in_exit(void);
+void			lem_in_exit(int error);
 
 /*
- *	------------------------------ LIST FUNCTIONS ------------------------------
+**	------------------------------ LIST FUNCTIONS ------------------------------
 */
 
 t_room			*find_room(t_room *rooms, char *name);

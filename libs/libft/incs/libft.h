@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:07:51 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 12:35:08 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 16:34:09 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char			*ft_uimaxtoa_base(uintmax_t n, int base);
 int				ft_atoi(const char *str);
 int				ft_strisonly(const char *str, const char *ref);
 int				ft_strisonlyc(const char *str, const char ref);
+int				ft_strisdigit(const char *s);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -95,7 +96,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strnjoin(char const *s1, char const *s2, size_t len);
-char			*ft_strjoin_nl(char const *s1, char const *s2);
+char			*ft_strjoin_split(char const *s1, char const *s2, char split);
 char			*ft_strtrim(char const *s);
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);

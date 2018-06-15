@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_nl.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 17:50:38 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 12:38:32 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 16:33:45 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_nl(char const *s1, char const *s2)
+char	*ft_strjoin_split(char const *s1, char const *s2, char split)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -33,7 +33,7 @@ char	*ft_strjoin_nl(char const *s1, char const *s2)
 		new[i] = s1[i];
 		i++;
 	}
-	new[i++] = '\n';
+	new[i++] = split;
 	while (s2[j])
 		new[i++] = s2[j++];
 	new[i] = '\0';
