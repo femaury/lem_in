@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 17:50:38 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 12:21:58 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 18:50:56 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		if (!(new = (char *)malloc(ft_strlen(s2) + 1)))
 			return (NULL);
-		return ((char *)ft_memmove(new, s2, ft_strlen(s2)));
+		return (ft_strdup(s2));
 	}
 	if (!s2)
 		return ((char *)s1);

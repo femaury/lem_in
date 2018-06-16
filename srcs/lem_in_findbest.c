@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 15:32:20 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 19:29:21 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	save_path(t_env *env, t_room *curr, unsigned len)
 		env->best_len = len;
 		if (!ft_lstfind_content(env->tmp, curr->name))
 			ft_lstappend(&env->tmp, ft_lstnew(curr->name,
-						ft_strlen(curr->name)));
+						ft_strlen(curr->name) + 1));
 		env->best = ft_lstcpy(&env->tmp);
 		ft_lstdellast(&env->tmp);
 	}
@@ -57,13 +57,13 @@ static void	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 		}
 		while (tunnel)
 		{
-			if (find_room(env->rooms, tunnel->content)->status == EMPTY)
+			if (find_room(env->rooms, (char *)tunnel->content)->status == EMPTY)
 			{
 				if (!ft_lstfind_content(env->tmp, curr->name))
 					ft_lstappend(&env->tmp, ft_lstnew(curr->name,
-								ft_strlen(curr->name)));
+								ft_strlen(curr->name) + 1));
 				find_end(env, find_room(env->rooms,
-							tunnel->content), NULL, len + 1);
+							(char *)tunnel->content), NULL, len + 1);
 			}
 			tunnel = tunnel->next;
 		}
@@ -85,7 +85,7 @@ void	find_best_path(t_env *env)
 	t_room	*start;
 
 	start = find_room(env->rooms, env->start);
-	if (!(env->tmp = ft_lstnew(env->start, ft_strlen(env->start))))
+	if (!(env->tmp = ft_lstnew(env->start, ft_strlen(env->start) + 1)))
 		lem_in_exit(E_MALLOC);
 	find_end(env, start, NULL, 1);
 	ft_lstdel(&env->tmp);

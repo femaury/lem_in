@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:40:54 by femaury           #+#    #+#             */
-/*   Updated: 2018/04/20 17:57:48 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 19:23:05 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char				**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	strcount = ft_strcount(s, c);
-	if (!(strtab = (char **)malloc(sizeof(char *) * strcount + 1)))
+	if (!(strtab = (char **)malloc(sizeof(char *) * (strcount + 1))))
 		return (NULL);
 	strtab = ft_filltab(strtab, s, c, strcount);
 	strtab[strcount] = NULL;

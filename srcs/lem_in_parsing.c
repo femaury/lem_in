@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/15 17:48:06 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/16 16:43:31 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 **
 */
 
-static void		create_colony(t_env *env)
+static void		create_colony(t_env *env, char *line)
 {
 	t_ant			*new;
 	unsigned int	i;
 
 	i = 2;
-	if (!env->pop)
+	env->pop = ft_atoi(line);
+	if (env->pop <= 0)
 		lem_in_exit(E_NOPOP);
 	if (!(new = (t_ant *)malloc(sizeof(t_ant))))
 		lem_in_exit(E_MALLOC);
@@ -73,7 +74,11 @@ static t_room	*add_room(char *line, int status)
 	size = ft_strtabsize(info);
 	new->name = NULL;
 	while (i < size - 2)
-		new->name = ft_strjoin_split(new->name, info[i++], ' ');
+	{
+		env->del = new->name;
+		new->name = ft_strjoin(new->name, info[i++]);
+		env->del ? ft_strdel(&env->del) : NULL;
+	}
 	new->status = status;
 	new->posx = ft_atoi(info[size - 2]);
 	new->posy = ft_atoi(info[size - 1]);
@@ -142,14 +147,14 @@ static int		set_links(t_env *env, char *line)
 	if (!(curr = find_room(env->rooms, names[0])))
 		return (env->error = E_LINK1);
 	if (!curr->links)
-		curr->links = ft_lstnew(names[1], ft_strlen(names[1]));
+		curr->links = ft_lstnew(names[1], ft_strlen(names[1]) + 1);
 	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[1], ft_strlen(names[1])));
+		ft_lstprepend(&curr->links, ft_lstnew(names[1], ft_strlen(names[1]) + 1));
 	curr = find_room(env->rooms, names[1]);
 	if (!curr->links)
-		curr->links = ft_lstnew(names[0], ft_strlen(names[0]));
+		curr->links = ft_lstnew(names[0], ft_strlen(names[0]) + 1);
 	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[0], ft_strlen(names[0])));
+		ft_lstprepend(&curr->links, ft_lstnew(names[0], ft_strlen(names[0]) + 1));
 	ft_tabdel((void **)names, ft_strtabsize(names));
 	return (0);
 }
@@ -178,10 +183,7 @@ void			parse_input(t_env *env)
 		if (line[0] != '#' || line[1] == '#')
 		{
 			if (!env->pop && ft_strisdigit(line) && !(status = 0))
-			{
-				env->pop = ft_atoi(line);
-				create_colony(env);
-			}
+				create_colony(env, line);
 			else if (!ft_strncmp(line, "##start", 7))
 				status = START;
 			else if (!ft_strncmp(line, "##end", 5))
@@ -191,7 +193,9 @@ void			parse_input(t_env *env)
 			else if (ft_strhasc(line, ' '))
 				build_anthill(env, line, &status);
 		}
+		env->del = env->file;
 		env->file = ft_strjoin_split(env->file, line, '\n');
+		env->del ? ft_strdel(&env->del) : NULL;
 		ft_strdel(&line);
 	}
 }

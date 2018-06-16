@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 14:56:09 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/14 15:30:00 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/15 18:26:27 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	env_init(t_env *env)
 	env->file = NULL;
 	env->start = NULL;
 	env->end = NULL;
+	env->del = NULL;
 	env->tmp = NULL;
 	env->best = NULL;
 	env->ants = NULL;
