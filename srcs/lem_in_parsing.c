@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/16 16:43:31 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/16 17:12:25 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		create_colony(t_env *env, char *line)
 **
 */
 
-static t_room	*add_room(char *line, int status)
+static t_room	*add_room(t_env *env, char *line, int status)
 {
 	unsigned int	i;
 	unsigned int	size;
@@ -76,7 +76,7 @@ static t_room	*add_room(char *line, int status)
 	while (i < size - 2)
 	{
 		env->del = new->name;
-		new->name = ft_strjoin(new->name, info[i++]);
+		new->name = ft_strjoin_split(new->name, info[i++], ' ');
 		env->del ? ft_strdel(&env->del) : NULL;
 	}
 	new->status = status;
@@ -104,12 +104,12 @@ static int		build_anthill(t_env *env, char *line, int *status)
 		lem_in_exit(E_NOPOP);
 	if (!env->rooms)
 	{
-		curr = add_room(line, *status);
+		curr = add_room(env, line, *status);
 		env->rooms = curr;
 	}
 	else
 	{
-		curr->next = add_room(line, *status);
+		curr->next = add_room(env, line, *status);
 		curr = curr->next;
 	}
 	if (!curr)
@@ -149,12 +149,14 @@ static int		set_links(t_env *env, char *line)
 	if (!curr->links)
 		curr->links = ft_lstnew(names[1], ft_strlen(names[1]) + 1);
 	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[1], ft_strlen(names[1]) + 1));
+		ft_lstprepend(&curr->links, ft_lstnew(names[1],
+					ft_strlen(names[1]) + 1));
 	curr = find_room(env->rooms, names[1]);
 	if (!curr->links)
 		curr->links = ft_lstnew(names[0], ft_strlen(names[0]) + 1);
 	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[0], ft_strlen(names[0]) + 1));
+		ft_lstprepend(&curr->links, ft_lstnew(names[0],
+					ft_strlen(names[0]) + 1));
 	ft_tabdel((void **)names, ft_strtabsize(names));
 	return (0);
 }

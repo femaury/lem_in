@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/15 19:29:21 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/16 16:51:34 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,18 @@
 
 static void	save_path(t_env *env, t_room *curr, unsigned len)
 {
+	t_list	*del;
+
 	if (len < env->best_len)
 	{
 		env->best_len = len;
 		if (!ft_lstfind_content(env->tmp, curr->name))
 			ft_lstappend(&env->tmp, ft_lstnew(curr->name,
 						ft_strlen(curr->name) + 1));
+		del = env->best;
 		env->best = ft_lstcpy(&env->tmp);
+		if (del)
+			ft_lstdel(&del);
 		ft_lstdellast(&env->tmp);
 	}
 	curr->status = EMPTY;
