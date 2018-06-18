@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 14:56:09 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 15:07:54 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 19:52:55 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **	Finds room in linked list with corresponding name.
 **	If no room is found, returns NULL so that a call to
 **	lem_in_exit can be made from parent function.
-**
 */
 
 t_room	*find_room(t_room *rooms, char *name)
@@ -39,7 +38,6 @@ t_room	*find_room(t_room *rooms, char *name)
 ** 		void	env_init(t_env *env);
 **
 **	Initializes the program's environment.
-**	
 */
 
 void	env_init(t_env *env)
@@ -57,6 +55,12 @@ void	env_init(t_env *env)
 	env->rooms = NULL;
 }
 
+/*
+**		void 	ant_del(t_ant **ants);
+**
+**		Deletes the ant structure.
+*/
+
 void	ant_del(t_ant **ants)
 {
 	if (!*ants)
@@ -65,6 +69,12 @@ void	ant_del(t_ant **ants)
 	free(*ants);
 	*ants = NULL;
 }
+
+/*
+**		void	room_del(t_room **rooms);
+**
+**			Deletes the room structure.
+*/
 
 void	room_del(t_room **rooms)
 {
@@ -76,6 +86,14 @@ void	room_del(t_room **rooms)
 	free(*rooms);
 	*rooms = NULL;
 }
+
+/*
+**		void	link_best_room(t_env *env);
+**
+**	Transforms the t_list containing the names
+**	of all the rooms making up the shortest path
+**	into a t_room list.
+*/
 
 void	link_best_room(t_env *env)
 {

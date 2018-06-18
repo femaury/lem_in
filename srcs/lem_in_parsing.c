@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 19:15:00 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 20:35:22 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **	Creates the linked list containing all the ants.
 **	Makes env->ants point to tat list. Gives each ant
 **	an ID (from 1 to N) and sets their pointers to NULL.
-**
 */
 
 static void		create_colony(t_env *env, char *line)
@@ -54,7 +53,6 @@ static void		create_colony(t_env *env, char *line)
 **	Mallocs new list item and adds to it the room's name,
 **	status, coordinates, ant ID and sets its pointers to
 **	NULL.
-**
 */
 
 static t_room	*add_room(t_env *env, char *line, int status)
@@ -77,7 +75,7 @@ static t_room	*add_room(t_env *env, char *line, int status)
 	{
 		env->del = new->name;
 		new->name = ft_strjoin_split(new->name, info[i++], ' ');
-		env->del ? ft_strdel(&env->del) : NULL;
+		ft_strdel(&env->del);
 	}
 	new->status = status;
 	new->posx = ft_atoi(info[size - 2]);
@@ -94,7 +92,6 @@ static t_room	*add_room(t_env *env, char *line, int status)
 ** 		void	build_anthill(t_env *env, char *line, int *status);
 **
 **	Either creates or adds to env->rooms by calling add_room. Resets status.
-**
 */
 
 static int		build_anthill(t_env *env, char *line, int *status)
@@ -131,7 +128,6 @@ static int		build_anthill(t_env *env, char *line, int *status)
 **	the name of the other room. Exits if tunnel declaration
 **	is invalid. (e.g. more or less than two rooms or
 **	invalid room name)
-**
 */
 
 static int		set_links(t_env *env, char *line)
@@ -172,7 +168,6 @@ static int		set_links(t_env *env, char *line)
 **	into account. All lines containing ' ' are
 **	considered as room declarations and all
 **	lines containing '-' as tunnel declarations.
-**
 */
 
 void			parse_input(t_env *env)
@@ -191,14 +186,14 @@ void			parse_input(t_env *env)
 				status = START;
 			else if (!ft_strncmp(line, "##end", 5))
 				status = END;
-			else if (ft_strhasc(line, '-'))
+			else if (ft_strhasc(line, '-') && !ft_strhasc(line, ' '))
 				set_links(env, line);
 			else if (ft_strhasc(line, ' '))
 				build_anthill(env, line, &status);
 		}
 		env->del = env->file;
 		env->file = ft_strjoin_split(env->file, line, '\n');
-		env->del ? ft_strdel(&env->del) : NULL;
+		ft_strdel(&env->del);
 		ft_strdel(&line);
 	}
 }

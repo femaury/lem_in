@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 15:00:03 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 20:00:07 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **	Adds current room to end of tmp list. Saves shortest path found by
 **	copying env->tmp to env->best and saves its length in env->best_len.
 **	Removes current room from tmp list and sets it back to EMPTY (backtrack).
-**
 */
 
 static void	save_path(t_env *env, t_room *curr, unsigned len)
@@ -46,7 +45,6 @@ static void	save_path(t_env *env, t_room *curr, unsigned len)
 **	Recursive function that checks all possible paths from START to END and
 **	calls save_path every time it finds a shorter path. Each time you enter
 **	a room, you set it to OCCUPIED and save the previous room in the tmp list.
-**
 */
 
 static void	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
@@ -82,10 +80,9 @@ static void	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 **
 **	Initializes env->best and env->best_len to
 **	then call find_end.
-**
 */
 
-void	find_best_path(t_env *env)
+void		find_best_path(t_env *env)
 {
 	t_room	*start;
 

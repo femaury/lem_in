@@ -6,25 +6,40 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 14:01:05 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 17:45:24 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 19:59:08 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+/*
+**		void	move(t_env *env, t_room *curr, unsigned *arrived);
+**
+**	Recursive function that iterates over the shortest path t_room list
+**	until it either finds END or an empty room and then moves all the ants
+**	up to that room, setting it to OCCUPIED.
+*/
+
 static void	move(t_env *env, t_room *curr, unsigned *arrived)
 {
 	if (curr->status == END)
 	{
-	   *arrived += 1;
-	   return ;
+		*arrived += 1;
+		return ;
 	}
 	if (curr->status == EMPTY)
 		return ;
 	move(env, curr->best, arrived);
-	curr->best->status = curr->best->status == EMPTY ? OCCUPIED : curr->best->status;
+	curr->best->status = curr->best->status == EMPTY
+		? OCCUPIED : curr->best->status;
 	curr->best->ant_id = curr->ant_id;
 }
+
+/*
+**		void	print_ants(t_env *env);
+**
+**	Function that prints which ants are where.
+*/
 
 static void	print_ants(t_env *env)
 {
@@ -40,6 +55,13 @@ static void	print_ants(t_env *env)
 	ft_printf("\n");
 }
 
+/*
+**		void	send_ants(t_env *env);
+**
+**	Function that loops until all ants have
+**	arrived in END room, calling move and print_ants.
+*/
+
 void		send_ants(t_env *env)
 {
 	unsigned int	departed;
@@ -51,7 +73,7 @@ void		send_ants(t_env *env)
 	while (arrived < env->pop)
 	{
 		curr = env->best_room;
-		curr->ant_id = departed < env->pop ? departed + 1: 0;
+		curr->ant_id = departed < env->pop ? departed + 1 : 0;
 		if (departed == env->pop + 1)
 			while (curr->status != END && curr->status != OCCUPIED)
 				curr = curr->best;
