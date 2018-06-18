@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/16 17:12:25 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 19:15:00 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static t_room	*add_room(t_env *env, char *line, int status)
 	new->ant_id = 0;
 	new->links = NULL;
 	new->next = NULL;
+	new->best = NULL;
 	ft_tabdel((void **)info, size);
 	return (new);
 }

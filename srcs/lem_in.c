@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:15:12 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/16 17:18:00 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 19:13:13 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 void	print_lists(t_env *env)
 {
-	t_list	*link;
+//	t_list	*link;
 	t_room	*room;
-	t_ant	*ant;
+//	t_ant	*ant;
 
-	ft_printf("\n{CYAN}------------------------------ ANTS ------------------------------{EOC}\n\n");
+/*	ft_printf("\n{CYAN}------------------------------ ANTS ------------------------------{EOC}\n\n");
 	ant = env->ants;
 	ft_printf("-----> TOTAL POPULATION OF %u ANTS <-----\n\n", env->pop);
 	while (ant)
@@ -59,16 +59,26 @@ void	print_lists(t_env *env)
 		ft_printf("          V\n");
 		room = room->next;
 	}
-	link = env->best;
-	ft_printf("      \\_______/      \n\n");
+*/	room = env->best_room;
+//	ft_printf("      \\_______/      \n\n");
 	ft_printf("START --> %s\nEND ----> %s\n\n", env->start, env->end);
 	ft_printf("FOUND SHORTEST PATH OF LEN %u\n\n", env->best_len);
-	while (link->next)
+	while (room->best)
 	{
-		ft_printf("%s  -->  ", (char *)link->content);
-		link = link->next;
+		ft_printf("%s  -->  ", room->name);
+		room = room->best;
 	}
-	ft_printf("%s\n\n", (char *)link->content);
+	ft_printf("%s\n\n", room->name);
+}
+
+void	send_to_end(t_env *env)
+{
+	unsigned int	pop;
+
+	pop = env->pop;
+	while (pop > 0)
+		ft_printf("L%u-%s ", pop--, env->end);
+	ft_printf("\n");
 }
 
 /*
@@ -92,6 +102,15 @@ int		main(void)
 		lem_in_exit(env.error = E_NOEND);
 	find_best_path(&env);
 	ft_putendl(env.file);
-	print_lists(&env);
+	ft_printf("\n");
+	link_best_room(&env);
+//	print_lists(&env);
+	if (env.best_len == 1)
+		send_to_end(&env);
+	else
+		send_ants(&env);
+	ant_del(&env.ants);
+	room_del(&env.rooms);
+	ft_strdel(&env.file);
 	return (0);
 }

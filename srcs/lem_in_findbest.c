@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/16 16:51:34 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 15:00:03 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	find_best_path(t_env *env)
 	if (!(env->tmp = ft_lstnew(env->start, ft_strlen(env->start) + 1)))
 		lem_in_exit(E_MALLOC);
 	find_end(env, start, NULL, 1);
+	ft_lstappend(&env->best, ft_lstnew(env->end, ft_strlen(env->end) + 1));
 	ft_lstdel(&env->tmp);
 	if (!env->best)
 		lem_in_exit(E_NOPATH);

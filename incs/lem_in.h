@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/15 18:26:11 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 16:55:58 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct	s_room
 	int				posy;
 	unsigned int	ant_id;
 	t_list			*links;
+	struct s_room	*best;
 	struct s_room	*next;
 }				t_room;
 
@@ -86,6 +87,7 @@ typedef struct	s_env
 	unsigned int	pop;
 	unsigned int	best_len;
 	t_list			*best;
+	t_room			*best_room;
 	t_list			*tmp;
 	t_ant			*ants;
 	t_room			*rooms;
@@ -96,8 +98,8 @@ typedef struct	s_env
 */
 
 void			parse_input(t_env *env);
-void			env_init(t_env *env);
 void			find_best_path(t_env *env);
+void			send_ants(t_env *env);
 void			lem_in_exit(int error);
 
 /*
@@ -105,5 +107,9 @@ void			lem_in_exit(int error);
 */
 
 t_room			*find_room(t_room *rooms, char *name);
+void			env_init(t_env *env);
+void			ant_del(t_ant **ants);
+void			room_del(t_room **rooms);
+void			link_best_room(t_env *env);
 
 #endif

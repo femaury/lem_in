@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 14:56:09 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/15 18:26:27 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/18 15:07:54 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,40 @@ void	env_init(t_env *env)
 	env->best = NULL;
 	env->ants = NULL;
 	env->rooms = NULL;
+}
+
+void	ant_del(t_ant **ants)
+{
+	if (!*ants)
+		return ;
+	ant_del(&(*ants)->next);
+	free(*ants);
+	*ants = NULL;
+}
+
+void	room_del(t_room **rooms)
+{
+	if (!*rooms)
+		return ;
+	room_del(&(*rooms)->next);
+	ft_strdel(&(*rooms)->name);
+	ft_lstdel(&(*rooms)->links);
+	free(*rooms);
+	*rooms = NULL;
+}
+
+void	link_best_room(t_env *env)
+{
+	t_room	*room;
+	t_list	*curr;
+
+	curr = env->best->next;
+	env->best_room = find_room(env->rooms, env->start);
+	room = env->best_room;
+	while (curr)
+	{
+		room->best = find_room(env->rooms, (char *)curr->content);
+		room = find_room(env->rooms, (char *)curr->content);
+		curr = curr->next;
+	}
 }
