@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/19 11:44:43 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 15:00:53 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,47 +47,6 @@ static void		create_colony(t_env *env, char *line)
 	}
 }
 
-/*
-** 		t_room	*add_room(char *line, int status);
-**
-**	Mallocs new list item and adds to it the room's name,
-**	status, coordinates, ant ID and sets its pointers to
-**	NULL.
-
-
-static t_room	*add_room(t_env *env, char *line, int status)
-{
-	unsigned int	i;
-	unsigned int	size;
-	char			**info;
-	t_room			*new;
-
-	i = 0;
-	if (!(new = (t_room *)malloc(sizeof(t_room))))
-		lem_in_exit(E_MALLOC);
-	if (!(info = ft_strsplit(line, ' ')))
-		lem_in_exit(E_SPLIT);
-	if (!info[0] || !info[1] || !info[2])
-		return (NULL);
-	size = ft_strtabsize(info);
-	new->name = NULL;
-	while (i < size - 2)
-	{
-		env->del = new->name;
-		new->name = ft_strjoin_split(new->name, info[i++], ' ');
-		ft_strdel(&env->del);
-	}
-	new->status = status;
-	new->posx = ft_atoi(info[size - 2]);
-	new->posy = ft_atoi(info[size - 1]);
-	new->ant_id = 0;
-	new->links = NULL;
-	new->next = NULL;
-	new->best = NULL;
-	ft_tabdel((void **)info, size);
-	return (new);
-}
-*/
 /*
 ** 		void	build_anthill(t_env *env, char *line, int *status);
 **
@@ -176,7 +135,7 @@ void			parse_input(t_env *env)
 	char	*line;
 
 	status = 0;
-	while (!(line = NULL) && !env->error && ft_gnl(0, &line) > 0 && line)
+	while (!(line = NULL) && !env->error && get_next_line(0, &line) > 0 && line)
 	{
 		if (line[0] != '#' || line[1] == '#')
 		{

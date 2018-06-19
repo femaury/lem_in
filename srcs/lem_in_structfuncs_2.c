@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 11:37:30 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/19 11:47:52 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 15:01:07 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	and coordinates of the room.
 */
 
-static int	set_info(t_env	*env, t_room *new, char *line)
+static int	set_info(t_env *env, t_room *new, char *line)
 {
 	unsigned int	i;
 	unsigned int	size;

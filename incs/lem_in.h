@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/19 11:43:57 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 14:58:09 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 */
 
 # include "../libs/libft/incs/libft.h"
+# include "../libs/libft/incs/get_next_line.h"
 # include "../libs/printf/incs/libftprintf.h"
 
 /*
