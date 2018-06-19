@@ -6,14 +6,14 @@
 #    By: femaury <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 20:03:09 by femaury           #+#    #+#              #
-#    Updated: 2018/06/18 16:57:17 by femaury          ###   ########.fr        #
+#    Updated: 2018/06/19 11:44:12 by femaury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SRC_PATH = srcs
 SRC_NAME = lem_in.c lem_in_parsing.c lem_in_structfuncs.c lem_in_findbest.c \
-		   lem_in_send_ants.c lem_in_exit.c
+		   lem_in_send_ants.c lem_in_structfuncs_2.c lem_in_exit.c
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

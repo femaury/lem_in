@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 15:49:58 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 16:55:58 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 11:43:57 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void			lem_in_exit(int error);
 **	------------------------------ LIST FUNCTIONS ------------------------------
 */
 
+t_room			*add_room(t_env *env, char *line, int status);
 t_room			*find_room(t_room *rooms, char *name);
 void			env_init(t_env *env);
 void			ant_del(t_ant **ants);

@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 20:35:22 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 11:44:43 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void		create_colony(t_env *env, char *line)
 **	Mallocs new list item and adds to it the room's name,
 **	status, coordinates, ant ID and sets its pointers to
 **	NULL.
-*/
+
 
 static t_room	*add_room(t_env *env, char *line, int status)
 {
@@ -87,7 +87,7 @@ static t_room	*add_room(t_env *env, char *line, int status)
 	ft_tabdel((void **)info, size);
 	return (new);
 }
-
+*/
 /*
 ** 		void	build_anthill(t_env *env, char *line, int *status);
 **

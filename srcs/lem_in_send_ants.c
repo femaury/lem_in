@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 14:01:05 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 19:59:08 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/19 11:54:26 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,13 @@ static void	move(t_env *env, t_room *curr, unsigned *arrived)
 **	Function that prints which ants are where.
 */
 
-static void	print_ants(t_env *env)
+static void	print_ants(t_room *curr)
 {
-	t_room	*curr;
-
-	curr = env->best_room;
-	while (curr)
-	{
-		if (curr->status != START && curr->ant_id)
-			ft_printf("L%u-%s ", curr->ant_id, curr->name);
-		curr = curr->best;
-	}
-	ft_printf("\n");
+	if (!curr)
+		return ;
+	print_ants(curr->best);
+	if (curr->status != START && curr->ant_id)
+		ft_printf("L%u-%s ", curr->ant_id, curr->name);
 }
 
 /*
@@ -78,7 +73,8 @@ void		send_ants(t_env *env)
 			while (curr->status != END && curr->status != OCCUPIED)
 				curr = curr->best;
 		move(env, curr, &arrived);
-		print_ants(env);
+		print_ants(env->best_room);
+		ft_printf("\n");
 		departed++;
 	}
 }
