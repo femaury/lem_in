@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:18:41 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/19 15:00:53 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/20 11:34:36 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,23 @@ static int		set_links(t_env *env, char *line)
 
 	if (!(names = ft_strsplit(line, '-')))
 		lem_in_exit(E_SPLIT);
-	if (!names[0] || !names[1])
-		return (env->error = E_LINK);
-	if (!find_room(env->rooms, names[1]))
-		return (env->error = E_LINK2);
-	if (!(curr = find_room(env->rooms, names[0])))
-		return (env->error = E_LINK1);
-	if (!curr->links)
-		curr->links = ft_lstnew(names[1], ft_strlen(names[1]) + 1);
+	if (names[0] && names[1] && find_room(env->rooms, names[1])
+			&& (curr = find_room(env->rooms, names[0])))
+	{
+		if (!curr->links)
+			curr->links = ft_lstnew(names[1], ft_strlen(names[1]) + 1);
+		else
+			ft_lstprepend(&curr->links, ft_lstnew(names[1],
+						ft_strlen(names[1]) + 1));
+		curr = find_room(env->rooms, names[1]);
+		if (!curr->links)
+			curr->links = ft_lstnew(names[0], ft_strlen(names[0]) + 1);
+		else
+			ft_lstprepend(&curr->links, ft_lstnew(names[0],
+						ft_strlen(names[0]) + 1));
+	}
 	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[1],
-					ft_strlen(names[1]) + 1));
-	curr = find_room(env->rooms, names[1]);
-	if (!curr->links)
-		curr->links = ft_lstnew(names[0], ft_strlen(names[0]) + 1);
-	else
-		ft_lstprepend(&curr->links, ft_lstnew(names[0],
-					ft_strlen(names[0]) + 1));
+		env->error = E_LINK;
 	ft_tabdel((void **)names, ft_strtabsize(names));
 	return (0);
 }
@@ -155,4 +155,5 @@ void			parse_input(t_env *env)
 		ft_strdel(&env->del);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 }

@@ -6,7 +6,7 @@
 /*   By: femaury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 13:06:20 by femaury           #+#    #+#             */
-/*   Updated: 2018/06/18 20:00:07 by femaury          ###   ########.fr       */
+/*   Updated: 2018/06/20 11:45:38 by femaury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ static void	find_end(t_env *env, t_room *curr, t_list *tunnel, unsigned len)
 			if (find_room(env->rooms, (char *)tunnel->content)->status == EMPTY)
 			{
 				if (!ft_lstfind_content(env->tmp, curr->name))
-					ft_lstappend(&env->tmp, ft_lstnew(curr->name,
-								ft_strlen(curr->name) + 1));
+					if (env->tmp)
+						ft_lstappend(&env->tmp, ft_lstnew(curr->name,
+									ft_strlen(curr->name) + 1));
 				find_end(env, find_room(env->rooms,
 							(char *)tunnel->content), NULL, len + 1);
 			}
@@ -90,8 +91,11 @@ void		find_best_path(t_env *env)
 	if (!(env->tmp = ft_lstnew(env->start, ft_strlen(env->start) + 1)))
 		lem_in_exit(E_MALLOC);
 	find_end(env, start, NULL, 1);
-	ft_lstappend(&env->best, ft_lstnew(env->end, ft_strlen(env->end) + 1));
+	if (env->best)
+		ft_lstappend(&env->best, ft_lstnew(env->end, ft_strlen(env->end) + 1));
 	ft_lstdel(&env->tmp);
 	if (!env->best)
+	{
 		lem_in_exit(E_NOPATH);
+	}
 }
